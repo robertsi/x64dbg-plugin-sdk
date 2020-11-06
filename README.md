@@ -23,12 +23,12 @@ project(MyPlugin)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # https://github.com/TheLartians/CPM.cmake/releases
-include(cmake/CPM.cmake)
+include(CPM.cmake)
 
 # Add x64dbg plugin SDK dependency
 CPMAddPackage(
 	NAME x64dbg
-	GITHUB_REPOSITORY https://github.com/x64dbg/sdk
+	GITHUB_REPOSITORY x64dbg/sdk
 	GIT_TAG x64dbg_9f9b1ba1c03ffb9dc921b3e1f8615412c65723f5
 )
 
