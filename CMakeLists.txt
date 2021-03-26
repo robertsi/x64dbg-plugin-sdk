@@ -22,4 +22,7 @@ function(x64dbg_plugin target)
 	get_property(x64dbg_SOURCE_DIR GLOBAL PROPERTY x64dbg_SOURCE_DIR)
 	get_target_property(x64dbg_SOURCES x64dbg INTERFACE_SOURCES)
 	source_group(TREE ${x64dbg_SOURCE_DIR} FILES ${x64dbg_SOURCES})
+	# Support PluginDevHelper
+	add_custom_command(TARGET ${target} PRE_LINK COMMAND if exist "\"$(SolutionDir)PluginDevBuildTool.exe\"" "(\"$(SolutionDir)PluginDevBuildTool.exe\"" unload "\"$(TargetPath)\")" else (echo Copy PluginDevTool.exe next to the .sln to automatically reload plugins when building))
+	add_custom_command(TARGET ${target} POST_BUILD COMMAND if exist "\"$(SolutionDir)PluginDevBuildTool.exe\"" ("\"$(SolutionDir)PluginDevBuildTool.exe\"" reload "\"$(TargetPath)\""))
 endfunction()
